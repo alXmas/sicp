@@ -1,0 +1,2 @@
+# sicp
+🚀 SICP on Clojure
