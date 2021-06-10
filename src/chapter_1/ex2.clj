@@ -1,6 +1,6 @@
 (ns chapter-1.ex2)
 
-(defn solution
+(def solution
   (/ (+ 5
         4
         (- 2
