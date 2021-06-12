@@ -1,18 +1,15 @@
 (ns chapter-1.ex3)
 
-(defn sum-of-squares [x y]
-  (+ (* x x) (* y y)))
+(defn square [x] (* x x))
 
-(defn sulution
-  [x y z]
-  (cond
-    (and (< x y) (< x z))
-    (sum-of-squares y z)
-    (< x y)
-    (sum-of-squares x y)
-    (< x z)
-    (sum-of-squares x z)
-    (< y z)
-    (sum-of-squares z x)
-    :else
-    (sum-of-squares y x)))
+(defn sum-of-squares [x y]
+  (+ (square x)
+     (square y)))
+
+(defn largest-sum-of-squares [a b c]
+  (cond (>= a b) (cond (>= b c) (sum-of-squares a b)
+                       :else    (sum-of-squares a c))
+        (>= b c) (cond (>= c a) (sum-of-squares b c)
+                       :else    (sum-of-squares b a))
+        (>= c a) (cond (>= a b) (sum-of-squares c a)
+                       :else    (sum-of-squares c b))))
