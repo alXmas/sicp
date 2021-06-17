@@ -1,13 +1,22 @@
-(defn abs[x]
-  (if (< x 0) (- x) x))
+(ns chapter-1.ex7
+  (:use [chapter-1.ex3 :only [square]]))
 
-(def eps 1e-8)
+(defn abs [n] (max n (- n)))
 
-(defn sqrt
-  ([x] (sqrt x 1 0))
-  ([x guess last-guess]
-    (if (< (abs (- guess last-guess)) eps)
-      guess
-      (recur x (double (/ (+ guess (/ x guess)) 2)) guess))))
-      ; use `double` to convert ratio to float numbers, avoiding overflow.
+(defn good-enough? [guess x]
+  (< (abs (- (square guess) x)) 0.001))
 
+
+(defn average [x y]
+  (/ (+ x y) 2))
+
+(defn improve [guess x]
+  (average guess (/ x guess)))
+
+(defn sqrt-iter [guess x]
+  (if (good-enough? guess x)
+    guess
+    (sqrt-iter (improve guess x) 
+               x)))
+
+(defn sqrt [x] (sqrt-iter 1.0 x))
