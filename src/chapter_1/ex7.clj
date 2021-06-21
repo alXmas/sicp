@@ -20,3 +20,14 @@
                x)))
 
 (defn sqrt [x] (sqrt-iter 1.0 x))
+
+
+(defn better-good-enough? [prev-guess guess x]
+  (< (abs (- guess prev-guess))
+     0.000001))
+
+(defn better-sqrt [x]
+  (loop [prev-guess 0 guess 1.0]
+    (if (better-good-enough? prev-guess guess x)
+      guess
+      (recur guess (improve guess x)))))

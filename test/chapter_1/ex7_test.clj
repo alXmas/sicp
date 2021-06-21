@@ -26,3 +26,8 @@
   (is (= 3.00009155413138 (ex/sqrt 9)))
   (is (= 2.0000000929222947 (ex/sqrt 4)))
   (is (= 8.000001655289593 (ex/sqrt 64))))
+
+(deftest better-sqrt
+  (is (= 3.0 (ex/better-sqrt 9)))
+  (is (= 0.02 (ex/better-sqrt 0.0004)))
+  (is (= 10.0 (ex/better-sqrt 100))))
